@@ -1,0 +1,106 @@
+Commands for error downloading :
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+sudo apt update
+
+For the question 3: 
+1.
+Create a repo in github
+Clone on local machine : 
+To clone on local machine type : 
+ls 
+cd folder name 
+git clone the url with .git 
+Create file in vs code with .py or .html 
+And type command : git add filename .py or .html
+git status 
+git  commit -m “File Uploaded Successfully”
+git remote set-url origin token_link
+git config –global user.name “2408005-creator”
+Git config –global user.email “2408005@fragnelcollege.edu.in”
+git commit -m “File uploaded successfully”
+Git push
+
+
+ 3. Build and deploy a static website with GitHub + Vercel/Render
+Create an html page (basic static website code)
+Do as as strep 2: after going to the folder 
+git init 
+git add -A
+git init 
+git add -A
+git status 
+git  commit -m “File Uploaded Successfully”
+Git remote add origin “link of the repo”
+git push origin master
+npx plugins add vercel/vercel-plugin 
+
+
+ 4.Render it after deploying with vercel
+New 
+Static site 
+Connect github
+
+
+ 5.Virtual box to install mysql:
+su -  (helps to switch to another user)
+sudo apt install mysal-server
+sudo systemctl status mysql
+Ctrl c
+sudo mysql
+mysql> CREATE DATABASE myDB;
+mysql> CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, 
+name VARCHAR(100),
+email VARCHAR(255),
+mysql> SHOW TABLES;
+mysql> INSERT INTO users (id, name,email) VALUES (101,“BEATRICE”, “beatrice@gmail.com” 
+mysql> SELECT * FROM USERS;
+
+6. SPLIT DEPLOYMENT:
+Install LAMP stack : 
+● Apache → Web server 
+● PHP → To handle backend logic 
+● MySQL → Database 
+
+sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql -y 
+
+7. Setup Mysql database:
+Start my sql: sudo mysql -u root -p 
+Inside MYSQL shell: 
+CREATE DATABASE web_project; 
+USE web_project; 
+CREATE TABLE contacts (
+     id INT AUTO_INCREMENT PRIMARY KEY, 
+     name VARCHAR(50), 
+     email VARCHAR(100), 
+     message TEXT ); 
+EXIT; 
+
+Create PHP Script
+Go to Apache web root: 
+cd /var/www/html 
+sudo nano submit.php
+
+<?php
+$conn = new mysqli("localhost", "root", "", "web_project");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+$sql = "INSERT INTO contacts (name, email, message) VALUES ('$name', '$email', '$message')";
+if ($conn->query($sql) === TRUE) {
+    echo "Data saved successfully!";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$conn->close();
+?>
+
+Frontend setup on local system (the same that we create a static website) 
+Deploy frontend on vercel
+
